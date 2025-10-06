@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="sensorData.cpp">
+    <ClCompile Include="sensorDataApp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
