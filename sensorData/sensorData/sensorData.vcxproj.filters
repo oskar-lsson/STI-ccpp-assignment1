@@ -18,5 +18,8 @@
     <ClCompile Include="sensorDataApp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="addValue.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
