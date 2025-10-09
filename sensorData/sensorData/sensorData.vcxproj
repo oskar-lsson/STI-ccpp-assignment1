@@ -126,6 +126,7 @@
   <ItemGroup>
     <ClCompile Include="addValue.cpp" />
     <ClCompile Include="sensorDataApp.cpp" />
+    <ClCompile Include="sensorStatistic.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -10,25 +10,43 @@ int main()
 {
 	bool returnToStart = true;
 	bool continueAddValue = true;
+	bool correctInput;
+	int menuChoice;
+	
 	std::vector<double> sensorData;		
 	
-	do
+	do	//Continues until the user wants to exit
 	{
-		int menuChoice;
-		std::cout << "\n[1] Add new values \n[2] Display statistics \n[3] Search for specific value \n[4] Sorting the list \n[5] Exit" << std::endl;
-		std::cout << "Menu choice: "; std::cin >> menuChoice;
-
+		do		//Runs until correctInput is true
+		{
+			correctInput = true;
+			std::cout << "\n[1] Add new values "
+				"\n[2] Display statistics "
+				"\n[3] Search for specific value "
+				"\n[4] Sorting the list "
+				"\n[5] Exit" << std::endl;
+			std::cout << "Menu choice: "; std::cin >> menuChoice;
 	
+			if (std::cin.fail())
+			{
+				std::cin.clear();
+				std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+				std::cout << "- Invalid Input -" << std::endl;
+				correctInput = false;
+			}
+
+		} while (correctInput == false);
 		switch (menuChoice)
 		{
 		case 1:
 		{
-			do
+			do		
 			{
 				sensorData.push_back(addValue());			//adds the new value at the end of the vector
-				int choice;
-				std::cout << "Continue? 1 yes 2 no"; std::cin >> choice;
-				if (choice == 2)
+				int addChoice;
+				std::cout << "Add more values?\n" 
+					"[1] Yes \n[2] No"; std::cin >> addChoice;
+				if (addChoice == 2)
 				{
 					continueAddValue = false;
 				}
@@ -72,7 +90,7 @@ int main()
 
 	} while (returnToStart == true);
 	
-	for (int i = 0; i < sensorData.size(); i++)
+	for (int i = 0; i < sensorData.size(); i++)			//Will be deleted, here now to check that the vector contains all the numbers
 	{
 		std::cout << sensorData[i] << " ";
 	}
