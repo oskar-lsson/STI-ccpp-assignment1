@@ -4,7 +4,8 @@
 #include <iostream>
 #include <vector>
 
-double addValue();
+double addValue();								//Allows the user to add a value 
+void sumVector(std::vector<double> vec);		//prints the sum of the values in the vactor
 
 int main()
 {
@@ -38,14 +39,15 @@ int main()
 		} while (correctInput == false);
 		switch (menuChoice)
 		{
-		case 1:
+		case 1:				//Add new values
 		{
 			do		
 			{
 				sensorData.push_back(addValue());			//adds the new value at the end of the vector
-				int addChoice;
-				std::cout << "Add more values?\n" 
-					"[1] Yes \n[2] No"; std::cin >> addChoice;
+				int addChoice{};
+				std::cout << "Add more values?" 
+					"\n[1] Yes"
+					"\n[2] No "; std::cin >> addChoice;
 				if (addChoice == 2)
 				{
 					continueAddValue = false;
@@ -62,6 +64,8 @@ int main()
 			* Variance
 			* Standard deviation
 		*/ 
+			sumVector(sensorData);
+			break;
 		case 3:
 		/* Search funtions
 			* ...
