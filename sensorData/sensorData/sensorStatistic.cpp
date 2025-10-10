@@ -28,5 +28,18 @@ void avrageVector(std::vector<double> vect)
 	{
 		sumVect += i;
 	}
-	std::cout << "\nSum of the all the values is " << sumVect/vect.size() << std::endl;
+	std::cout << "\nThe avrage is " << sumVect/vect.size() << std::endl;
+}
+
+void minValueVector(std::vector<double> vect)
+{
+	double minValue = vect[0];
+	for (int i : vect)
+	{
+		if (i < minValue)
+		{
+			minValue = i;
+		}
+	}
+	std::cout << "\nMinimum value is " << minValue << std::endl;
 }

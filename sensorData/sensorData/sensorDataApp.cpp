@@ -7,6 +7,7 @@
 double addValue();								//Allows the user to add a value 
 void sumVector(std::vector<double> vec);		//prints the sum of the values in the vactor
 void avrageVector(std::vector<double> vect);	//prints the avrage of all the elements
+void minValueVector(std::vector<double> vect);	//Finds the smallest value
 
 int main()
 {
@@ -67,6 +68,7 @@ int main()
 		*/ 
 			sumVector(sensorData);
 			avrageVector(sensorData);
+			minValueVector(sensorData);
 			break;
 		case 3:
 		/* Search funtions
