@@ -14,12 +14,19 @@
 void sumVector(std::vector<double> vect)
 {
 	double sumVect{};
-	double valueVect{};
-	for (int i = 0; i < vect.size(); i++)
+	for (int i : vect)
 	{
-		valueVect = vect[i];
-		sumVect = sumVect + valueVect;
+		sumVect += i;
 	}
-	std::cout << "Sum of the all the values is " << sumVect << std::endl;
+	std::cout << "\nSum of the all the values is " << sumVect << std::endl;
 }
 
+void avrageVector(std::vector<double> vect)
+{
+	double sumVect{};
+	for (int i : vect)
+	{
+		sumVect += i;
+	}
+	std::cout << "\nSum of the all the values is " << sumVect/vect.size() << std::endl;
+}

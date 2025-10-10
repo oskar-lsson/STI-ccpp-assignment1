@@ -6,6 +6,7 @@
 
 double addValue();								//Allows the user to add a value 
 void sumVector(std::vector<double> vec);		//prints the sum of the values in the vactor
+void avrageVector(std::vector<double> vect);	//prints the avrage of all the elements
 
 int main()
 {
@@ -65,6 +66,7 @@ int main()
 			* Standard deviation
 		*/ 
 			sumVector(sensorData);
+			avrageVector(sensorData);
 			break;
 		case 3:
 		/* Search funtions
