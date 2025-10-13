@@ -11,14 +11,14 @@
 	* Standard deviation
 */
 
-void sumVector(std::vector<double> vect)
+double sumVector(std::vector<double> vect)
 {
 	double sumVect{};
 	for (int i : vect)
 	{
 		sumVect += i;
 	}
-	std::cout << "\nSum of the all the values is " << sumVect << std::endl;
+	return sumVect;
 }
 
 void avrageVector(std::vector<double> vect)
@@ -31,7 +31,7 @@ void avrageVector(std::vector<double> vect)
 	std::cout << "\nThe avrage is " << sumVect/vect.size() << std::endl;
 }
 
-void minValueVector(std::vector<double> vect)
+double minValueVector(std::vector<double> vect)
 {
 	double minValue = vect[0];
 	for (int i : vect)
@@ -41,10 +41,10 @@ void minValueVector(std::vector<double> vect)
 			minValue = i;
 		}
 	}
-	std::cout << "\nMinimum value is " << minValue << std::endl;
+	return minValue;
 }
 
-void maxValueVector(std::vector<double> vect)
+double maxValueVector(std::vector<double> vect)
 {
 	double maxValue = vect[0];
 	for (int i : vect)
@@ -54,5 +54,6 @@ void maxValueVector(std::vector<double> vect)
 			maxValue = i;
 		}
 	}
-	std::cout << "\nMaxmum value is " << maxValue << std::endl;
+	return maxValue;
 }
+
