@@ -22,7 +22,7 @@ int main()
 	int menuChoice;
 	int returnChoice{};
 	int numberOfDays;
-	bool beenInAddValue = false;
+	int noTimesInAddValue{};
 
 	std::vector<double> sensorData;
 	std::map<std::string, double> sensorDataMap;
@@ -54,9 +54,14 @@ int main()
 		{
 		case 1:				//Add new values
 		{
+			int i = 1;
 			std::cout << "\nHow many days do you want to enter? "; std::cin >> numberOfDays;
-
-			for (int i = 1; i <= numberOfDays; i++)
+			if (noTimesInAddValue != 0)		//if user have added numbers before
+			{
+				i += sensorData.size();
+				numberOfDays += sensorData.size();
+			}
+			for ( i ; i <= numberOfDays; i++)
 			{
 				std::string day = "Day " + std::to_string(i);		//makes the number of i to a string and saved in the string day
 				double value = addValue();
@@ -69,6 +74,7 @@ int main()
 			{
 				std::cout << pair.first << " : " << pair.second << "\n";
 			}
+			noTimesInAddValue++;
 			system("pause");
 			break;
 		}
@@ -77,7 +83,7 @@ int main()
 			if (sensorData.size() < 1)		//checks if the list is empty
 			{
 				std::cout << "\n- List is empty, try again -" << std::endl;
-				system("pause");		//waits for the user to press any key
+				system("pause");		//waits for the user to press a key
 				break;
 			}
 			//number of values
@@ -104,7 +110,7 @@ int main()
 			}
 			break;
 		case 3:
-			/* Search funtions
+			/* Search functions
 				* ...
 				* ...
 				* ...
