@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <vector>
+#include <cmath>
 /* Function that takes the list and display different statistics
 	* Numbers of elements
 	* Sum
@@ -11,7 +12,7 @@
 	* Standard deviation
 */
 
-double sumVector(std::vector<double> vect)
+double sum(std::vector<double> vect)
 {
 	double sumVect{};
 	for (int i : vect)
@@ -21,39 +22,50 @@ double sumVector(std::vector<double> vect)
 	return sumVect;
 }
 
-void avrageVector(std::vector<double> vect)
+double avrage(std::vector<double> vect)
 {
 	double sumVect{};
 	for (int i : vect)
 	{
 		sumVect += i;
 	}
-	std::cout << "\nThe avrage is " << sumVect/vect.size() << std::endl;
+	return sumVect/vect.size();			//returns the avrage 
 }
 
-double minValueVector(std::vector<double> vect)
+double minValue(std::vector<double> vect)
 {
-	double minValue = vect[0];
+	double minVal = vect[0];
 	for (int i : vect)
 	{
-		if (i < minValue)
+		if (i < minVal)
 		{
-			minValue = i;
+			minVal = i;
 		}
 	}
-	return minValue;
+	return minVal;		//returns the smallest value
 }
 
-double maxValueVector(std::vector<double> vect)
+double maxValue(std::vector<double> vect)
 {
-	double maxValue = vect[0];
+	double maxVal = vect[0];
 	for (int i : vect)
 	{
-		if (i > maxValue)
+		if (i > maxVal)
 		{
-			maxValue = i;
+			maxVal = i;
 		}
 	}
-	return maxValue;
+	return maxVal;			//returns the biggest value
 }
 
+double variance(std::vector<double> vect)
+{
+	double var{};
+	double mean = avrage(vect);		//The avrage of all the elements are used to calculate the variance
+
+	for (int i : vect)
+	{
+		var += pow(i - mean, 2);			//Calculates the difference between every element and the mean, pow() is used to get a positive number
+	}
+	return var/vect.size();			//returns the variance
+}

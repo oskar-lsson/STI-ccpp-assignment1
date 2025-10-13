@@ -3,11 +3,13 @@
 
 #include <iostream>
 #include <vector>
+#include <cmath>		//for the sqrt() function
 
 double addValue();								//Allows the user to add a value 
-double sumVector(std::vector<double> vec);		//prints the sum of the values in the vactor
-double minValueVector(std::vector<double> vect);	//Finds the smallest value
-double maxValueVector(std::vector<double> vect);	//Finds the biggest value
+double sum(std::vector<double> vec);		//prints the sum of the values in the vactor
+double minValue(std::vector<double> vect);	//Finds the smallest value
+double maxValue(std::vector<double> vect);	//Finds the biggest value
+double variance(std::vector<double> vect);	//Caluculates the variance
 
 int main()
 {
@@ -30,7 +32,7 @@ int main()
 				"\n[5] Exit" << std::endl;
 			std::cout << "Menu choice: "; std::cin >> menuChoice;
 	
-			if (std::cin.fail())
+			if (std::cin.fail())		//checks if user input is correct
 			{
 				std::cin.clear();
 				std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
@@ -57,23 +59,22 @@ int main()
 			} while (continueAddValue == true);
 			break;
 		}
-		case 2:
-		/* Function that takes the list and display different statistics
-			* Numbers of elements
-			* Sum
-			* Medianvalue
-			* min and max value
-			* Variance
-			* Standard deviation
-		*/ 
+		case 2: // Display different statistics
+
+			//number of values
+			std::cout << "\nNumber of values is "<< sensorData.size() << std::endl;
 			//sum
-			std::cout << "\nSum of the all the values is " << sumVector(sensorData) << std::endl;
+			std::cout << "\nSum of the all the values is " << sum(sensorData) << std::endl;
 			//avrage
-			std::cout << "\nThe avrage is " << sumVector(sensorData) / sensorData.size() << std::endl;
-			//minValue
-			std::cout << "\nMinimum value is " << minValueVector(sensorData) << std::endl;
-			//maxValue
-			std::cout << "\nMaxmum value is " << maxValueVector(sensorData) << std::endl;
+			std::cout << "\nThe avrage is " << sum(sensorData) / sensorData.size() << std::endl;
+			//minimum value
+			std::cout << "\nMinimum value is " << minValue(sensorData) << std::endl;
+			//maximum value
+			std::cout << "\nMaxmum value is " << maxValue(sensorData) << std::endl;
+			//variance
+			std::cout << "\nThe variance is " << variance(sensorData) << std::endl;
+			//standrad deviation
+			std::cout << "\nThe standrad deviation is " << sqrt(variance(sensorData)) << std::endl;
 			break;
 		case 3:
 		/* Search funtions
@@ -97,6 +98,7 @@ int main()
 			break;
 		}
 		default:
+			std::cout << "\n- Menu not available -" << std::endl;
 			break;
 		}
 		
@@ -107,6 +109,5 @@ int main()
 	{
 		std::cout << sensorData[i] << " ";
 	}
-	std::cout << "\n"<< sensorData.size() << " antal element" << std::endl;
 	std::cout << "\n\vA river dirt chee (Arrivederci)\n\n";
 }
