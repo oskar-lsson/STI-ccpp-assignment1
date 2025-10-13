@@ -6,10 +6,10 @@
 #include <cmath>		//for the sqrt() function
 
 double addValue();								//Allows the user to add a value 
-double sum(std::vector<double> vec);		//prints the sum of the values in the vactor
-double minValue(std::vector<double> vect);	//Finds the smallest value
-double maxValue(std::vector<double> vect);	//Finds the biggest value
-double variance(std::vector<double> vect);	//Caluculates the variance
+double sum(const std::vector<double> vect);		//prints the sum of the values in the vactor
+double minValue(const std::vector<double> vect);	//Finds the smallest value
+double maxValue(const std::vector<double> vect);	//Finds the biggest value
+double variance(const std::vector<double> vect);	//Caluculates the variance
 
 int main()
 {
