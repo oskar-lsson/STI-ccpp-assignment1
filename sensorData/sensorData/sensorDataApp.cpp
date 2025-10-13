@@ -8,6 +8,7 @@ double addValue();								//Allows the user to add a value
 void sumVector(std::vector<double> vec);		//prints the sum of the values in the vactor
 void avrageVector(std::vector<double> vect);	//prints the avrage of all the elements
 void minValueVector(std::vector<double> vect);	//Finds the smallest value
+void maxValueVector(std::vector<double> vect);	//Finds the biggest value
 
 int main()
 {
@@ -69,6 +70,7 @@ int main()
 			sumVector(sensorData);
 			avrageVector(sensorData);
 			minValueVector(sensorData);
+			maxValueVector(sensorData);
 			break;
 		case 3:
 		/* Search funtions
@@ -102,6 +104,6 @@ int main()
 	{
 		std::cout << sensorData[i] << " ";
 	}
-	
+	std::cout << "\n"<< sensorData.size() << " antal element" << std::endl;
 	std::cout << "\n\vA river dirt chee (Arrivederci)\n\n";
 }

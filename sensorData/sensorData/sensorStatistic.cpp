@@ -43,3 +43,16 @@ void minValueVector(std::vector<double> vect)
 	}
 	std::cout << "\nMinimum value is " << minValue << std::endl;
 }
+
+void maxValueVector(std::vector<double> vect)
+{
+	double maxValue = vect[0];
+	for (int i : vect)
+	{
+		if (i > maxValue)
+		{
+			maxValue = i;
+		}
+	}
+	std::cout << "\nMaxmum value is " << maxValue << std::endl;
+}
