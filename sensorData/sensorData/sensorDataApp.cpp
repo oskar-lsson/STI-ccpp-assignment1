@@ -5,6 +5,7 @@
 #include <vector>
 #include <cmath>		//for the sqrt() function
 
+void clearWindow();					//Clears the window and moves cursor to start position
 double addValue();								//Allows the user to add a value 
 double sum(const std::vector<double> &vect);		//prints the sum of the values in the vactor
 double minValue(const std::vector<double> &vect);	//Finds the smallest value
@@ -17,6 +18,7 @@ int main()
 	bool continueAddValue = true;
 	bool correctInput;
 	int menuChoice;
+	int returnChoice{};
 	
 	std::vector<double> sensorData;		
 	
@@ -24,6 +26,7 @@ int main()
 	{
 		do		//Runs until correctInput is true
 		{
+			clearWindow();
 			correctInput = true;
 			std::cout << "\n[1] Add new values "
 				"\n[2] Display statistics "
@@ -40,7 +43,8 @@ int main()
 				correctInput = false;
 			}
 
-		} while (correctInput == false);
+		} while (correctInput == false);	
+		clearWindow();
 		switch (menuChoice)
 		{
 		case 1:				//Add new values
@@ -76,6 +80,14 @@ int main()
 			std::cout << "\nThe variance is " << variance(sensorData) << std::endl;
 			//standrad deviation
 			std::cout << "\nThe standrad deviation is " << sqrt(variance(sensorData)) << std::endl;
+			
+			std::cout << "\n[1] Return to start?"
+				"\n[2] Exit "; std::cin >> returnChoice;
+
+			if (returnChoice == 2)
+			{
+				returnToStart = false;
+			}
 			break;
 		case 3:
 		/* Search funtions
@@ -99,7 +111,7 @@ int main()
 		
 
 	} while (returnToStart == true);
-	
+	clearWindow();
 	for (int i : sensorData)			//Will be deleted, here now to check that the vector contains all the numbers
 	{
 		std::cout << i << " ";
