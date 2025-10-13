@@ -66,7 +66,7 @@ int main()
 		}
 		case 2: // Display different statistics
 
-			if (sensorData.size() < 1)
+			if (sensorData.size() < 1)		//checks if the list is empty
 			{
 				std::cout << "\n- List is empty, try again -" << std::endl;
 				system("pause");		//waits for the user to press any key
@@ -74,23 +74,23 @@ int main()
 			}
 			//number of values
 			std::cout << "\nNumber of values is "<< sensorData.size() << std::endl;
-			//sum
+			//Prints the sum
 			std::cout << "\nSum of the all the values is " << sum(sensorData) << std::endl;
-			//avrage
+			//Prints the avrage
 			std::cout << "\nThe avrage is " << sum(sensorData) / sensorData.size() << std::endl;
-			//minimum value
+			//Prints the minimum value
 			std::cout << "\nMinimum value is " << minValue(sensorData) << std::endl;
-			//maximum value
+			//Prints the maximum value
 			std::cout << "\nMaxmum value is " << maxValue(sensorData) << std::endl;
-			//variance
+			//Prints the variance
 			std::cout << "\nThe variance is " << variance(sensorData) << std::endl;
-			//standrad deviation
+			//Prints the standrad deviation
 			std::cout << "\nThe standrad deviation is " << sqrt(variance(sensorData)) << std::endl;
 			
 			std::cout << "\n[1] Return to start?"
 				"\n[2] Exit "; std::cin >> returnChoice;
 
-			if (returnChoice == 2)
+			if (returnChoice == 2)			//Checks if the user wants to go back to start or exit the program
 			{
 				returnToStart = false;
 			}
