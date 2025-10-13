@@ -4,6 +4,8 @@
 #include <iostream>
 #include <vector>
 #include <cmath>		//for the sqrt() function
+#include <map>
+#include <string>
 
 void clearWindow();					//Clears the window and moves cursor to start position
 double addValue();								//Allows the user to add a value 
@@ -19,9 +21,12 @@ int main()
 	bool correctInput;
 	int menuChoice;
 	int returnChoice{};
-	
-	std::vector<double> sensorData;		
-	
+	int numberOfDays;
+	bool beenInAddValue = false;
+
+	std::vector<double> sensorData;
+	std::map<std::string, double> sensorDataMap;
+
 	do	//Continues until the user wants to exit
 	{
 		do		//Runs until correctInput is true
@@ -34,7 +39,7 @@ int main()
 				"\n[4] Sorting the list "
 				"\n[5] Exit" << std::endl;
 			std::cout << "Menu choice: "; std::cin >> menuChoice;
-	
+
 			if (std::cin.fail())		//checks if user input is correct
 			{
 				std::cin.clear();
@@ -43,25 +48,28 @@ int main()
 				correctInput = false;
 			}
 
-		} while (correctInput == false);	
+		} while (correctInput == false);
 		clearWindow();
 		switch (menuChoice)
 		{
 		case 1:				//Add new values
 		{
-			do		
+			std::cout << "\nHow many days do you want to enter? "; std::cin >> numberOfDays;
+
+			for (int i = 1; i <= numberOfDays; i++)
 			{
-				continueAddValue = true;					
-				sensorData.push_back(addValue());			//adds the new value at the end of the vector
-				int addChoice{};
-				std::cout << "Add more values?" 
-					"\n[1] Yes"
-					"\n[2] No "; std::cin >> addChoice;
-				if (addChoice == 2)
-				{
-					continueAddValue = false;
-				}
-			} while (continueAddValue == true);
+				std::string day = "Day " + std::to_string(i);		//makes the number of i to a string and saved in the string day
+				double value = addValue();
+				std::cout << "Value for " << day << " is " << value << std::endl;
+				sensorDataMap[day] = value;		//the value is paired with a specific key, in this case a day
+				sensorData.push_back(value);	//the value is also saved in one vector
+			}
+			std::cout << "\nYou entered the following:\n";
+			for (auto& pair : sensorDataMap)
+			{
+				std::cout << pair.first << " : " << pair.second << "\n";
+			}
+			system("pause");
 			break;
 		}
 		case 2: // Display different statistics
@@ -73,7 +81,7 @@ int main()
 				break;
 			}
 			//number of values
-			std::cout << "\nNumber of values is "<< sensorData.size() << std::endl;
+			std::cout << "\nNumber of values is " << sensorData.size() << std::endl;
 			//Prints the sum
 			std::cout << "\nSum of the all the values is " << sum(sensorData) << std::endl;
 			//Prints the avrage
@@ -86,7 +94,7 @@ int main()
 			std::cout << "\nThe variance is " << variance(sensorData) << std::endl;
 			//Prints the standrad deviation
 			std::cout << "\nThe standrad deviation is " << sqrt(variance(sensorData)) << std::endl;
-			
+
 			std::cout << "\n[1] Return to start?"
 				"\n[2] Exit "; std::cin >> returnChoice;
 
@@ -96,13 +104,13 @@ int main()
 			}
 			break;
 		case 3:
-		/* Search funtions
-			* ...
-			* ...
-			* ...
-			* ...
-			* ...
-		*/
+			/* Search funtions
+				* ...
+				* ...
+				* ...
+				* ...
+				* ...
+			*/
 		case 4:		//sorting the list
 			break;
 		case 5:		//Exit
@@ -112,12 +120,14 @@ int main()
 		}
 		default:
 			std::cout << "\n- Menu not available -" << std::endl;
+			system("pause");
 			break;
 		}
-		
+
 
 	} while (returnToStart == true);
 	clearWindow();
+
 	for (int i : sensorData)			//Will be deleted, here now to check that the vector contains all the numbers
 	{
 		std::cout << i << " ";

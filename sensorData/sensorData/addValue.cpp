@@ -9,7 +9,7 @@ double addValue()
 	do
 	{
 		correctInput = true;
-		std::cout << "\nAdd value here: "; std::cin >> sensorValue; std::cout << std::endl;
+		std::cout << "\nValue: "; std::cin >> sensorValue;
 		if (std::cin.fail())
 		{
 			std::cin.clear();
