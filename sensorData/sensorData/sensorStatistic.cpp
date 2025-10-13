@@ -16,7 +16,7 @@
 		- Calculates the variance
 */
 
-double sum(const std::vector<double> vect)
+double sum(const std::vector<double> &vect)
 {
 	double sumVect{};
 	for (int i : vect)
@@ -26,7 +26,7 @@ double sum(const std::vector<double> vect)
 	return sumVect;
 }
 
-double avrage(const std::vector<double> vect)
+double avrage(const std::vector<double> &vect)
 {
 	double sumVect{};
 	for (int i : vect)
@@ -36,7 +36,7 @@ double avrage(const std::vector<double> vect)
 	return sumVect/vect.size();			//returns the avrage 
 }
 
-double minValue(const std::vector<double> vect)
+double minValue(const std::vector<double> &vect)
 {
 	double minVal = vect[0];
 	for (int i : vect)
@@ -49,7 +49,7 @@ double minValue(const std::vector<double> vect)
 	return minVal;		//returns the smallest value
 }
 
-double maxValue(const std::vector<double> vect)
+double maxValue(const std::vector<double> &vect)
 {
 	double maxVal = vect[0];
 	for (int i : vect)
@@ -62,7 +62,7 @@ double maxValue(const std::vector<double> vect)
 	return maxVal;			//returns the biggest value
 }
 
-double variance(const std::vector<double> vect)
+double variance(const std::vector<double> &vect)
 {
 	double var{};
 	double mean = avrage(vect);		//The avrage of all the elements are used to calculate the variance
