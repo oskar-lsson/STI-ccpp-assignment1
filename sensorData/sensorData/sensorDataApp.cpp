@@ -66,6 +66,12 @@ int main()
 		}
 		case 2: // Display different statistics
 
+			if (sensorData.size() < 1)
+			{
+				std::cout << "\n- List is empty, try again -" << std::endl;
+				system("pause");		//waits for the user to press any key
+				break;
+			}
 			//number of values
 			std::cout << "\nNumber of values is "<< sensorData.size() << std::endl;
 			//sum
