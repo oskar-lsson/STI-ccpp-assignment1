@@ -47,6 +47,7 @@ int main()
 		{
 			do		
 			{
+				continueAddValue = true;					
 				sensorData.push_back(addValue());			//adds the new value at the end of the vector
 				int addChoice{};
 				std::cout << "Add more values?" 
@@ -84,14 +85,8 @@ int main()
 			* ...
 			* ...
 		*/
-		case 4:
-		/* Sortfunction
-			* ... 
-			* ...
-			* ...
-			* ...
-			* ...
-		*/
+		case 4:		//sorting the list
+			break;
 		case 5:		//Exit
 		{
 			returnToStart = false;
@@ -105,9 +100,9 @@ int main()
 
 	} while (returnToStart == true);
 	
-	for (int i = 0; i < sensorData.size(); i++)			//Will be deleted, here now to check that the vector contains all the numbers
+	for (int i : sensorData)			//Will be deleted, here now to check that the vector contains all the numbers
 	{
-		std::cout << sensorData[i] << " ";
+		std::cout << i << " ";
 	}
 	std::cout << "\n\vA river dirt chee (Arrivederci)\n\n";
 }
