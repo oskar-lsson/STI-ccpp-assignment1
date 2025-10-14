@@ -19,10 +19,12 @@ int main()
 	bool returnToStart = true;
 	bool continueAddValue = true;
 	bool correctInput;
+	bool searchAgain = true;
 	int menuChoice;
 	int returnChoice{};
 	int numberOfDays;
 	int noTimesInAddValue{};
+	
 
 	std::vector<double> sensorData;
 	std::map<std::string, double> sensorDataMap;
@@ -65,20 +67,21 @@ int main()
 			{
 				std::string day = "Day " + std::to_string(i);		//makes the number of i to a string and saved in the string day
 				double value = addValue();
-				std::cout << "Value for " << day << " is " << value << std::endl;
+				std::cout << "Temperture for " << day << " is " << value << std::endl;
 				sensorDataMap[day] = value;		//the value is paired with a specific key, in this case a day
 				sensorData.push_back(value);	//the value is also saved in one vector
 			}
 			std::cout << "\nYou entered the following:\n";
 			for (auto& pair : sensorDataMap)
 			{
-				std::cout << pair.first << " : " << pair.second << "\n";
+				std::cout << pair.first << " : " << pair.second << " degrees\n";
 			}
 			noTimesInAddValue++;
 			system("pause");
 			break;
-		}
+		}	//Case 1: add values end
 		case 2: // Display different statistics
+		{
 
 			if (sensorData.size() < 1)		//checks if the list is empty
 			{
@@ -109,16 +112,73 @@ int main()
 				returnToStart = false;
 			}
 			break;
-		case 3:
-			/* Search functions
-				* ...
-				* ...
-				* ...
-				* ...
-				* ...
-			*/
-		case 4:		//sorting the list
+		}  //case 2: stats end
+		case 3: //Searchfunction
+		{
+			int searchChoice;
+			int keySearch, valueSearch;
+			do
+			{
+				bool valueWasFound{};		//Used to display error message if value was not found
+				std::cout << "\nSearch by key or value?"
+					"\n[1] Key"
+					"\n[2] value" << std::endl;
+				std::cin >> searchChoice;
+				
+				if (searchChoice == 1)
+				{
+					std::cout << "\nWhich day do you want the temperature for?"
+						"\nDay"; std::cin >> keySearch;
+					auto it = sensorDataMap.find("Day " + std::to_string(keySearch)); //saves the keySearch in iterator it
+					if (it != sensorDataMap.end())
+					{
+						std::cout << "\nOn " << it->first << " the temparture was " << it->second << " degrees" << std::endl;
+					}
+					else
+					{
+						std::cout << "\n***Day not found***" << std::endl;
+					}
+				}
+				else
+				{
+					std::cout << "Which value are you looking for? "; std::cin >> valueSearch; std::cout << std::endl;
+					for (auto it = sensorDataMap.begin(); it != sensorDataMap.end(); it++)
+					{
+						if (it->second == valueSearch)
+						{
+							std::cout << "It was " << it->second << " degrees on " << it->first << std::endl;
+							valueWasFound = true;
+						}
+					}
+					if (valueWasFound == false)
+					{
+						std::cout << "\n***Value not found***\n" << std::endl;
+					}
+				}
+				std::cout <<
+					"\n[1] New search"
+					"\n[2] Return to start?"
+					"\n[3] Exit "; std::cin >> returnChoice;
+				if (returnChoice == 2)
+				{
+					searchAgain = false;
+				}
+				else if (returnChoice == 3)
+				{
+					returnToStart = false;
+					searchAgain = false;
+				}
+				else
+				{
+					clearWindow();
+				}
+			} while (searchAgain == true);
 			break;
+		} //case 3: searchfunction end
+		case 4:		//sorting the list
+		{
+			break;
+		} //case 4: sortint end
 		case 5:		//Exit
 		{
 			returnToStart = false;
@@ -130,8 +190,8 @@ int main()
 			break;
 		}
 
-
 	} while (returnToStart == true);
+
 	clearWindow();
 
 	for (int i : sensorData)			//Will be deleted, here now to check that the vector contains all the numbers
