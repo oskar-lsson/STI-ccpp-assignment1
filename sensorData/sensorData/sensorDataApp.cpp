@@ -13,15 +13,18 @@ double sum(const std::vector<double> &vect);		//prints the sum of the values in 
 double minValue(const std::vector<double> &vect);	//Finds the smallest value
 double maxValue(const std::vector<double> &vect);	//Finds the biggest value
 double variance(const std::vector<double> &vect);	//Caluculates the variance
+void valueSearch(const std::map<std::string, double>& searchMap);			// search for specific value
+void keySearch(const std::map<std::string, double>& searchMap);				//search for specific value
+
 
 int main()
 {
 	bool returnToStart = true;
 	bool continueAddValue = true;
-	bool correctInput;
+	bool correctInput = true;
 	bool searchAgain = true;
 	int menuChoice;
-	int returnChoice{};
+	int returnChoice;
 	int numberOfDays;
 	int noTimesInAddValue{};
 	
@@ -31,26 +34,21 @@ int main()
 
 	do	//Continues until the user wants to exit
 	{
-		do		//Runs until correctInput is true
+		clearWindow();
+		std::cout << "\n[1] Add new values "
+					 "\n[2] Display statistics "
+					 "\n[3] Search for specific value "
+					 "\n[4] Sorting the list "
+					 "\n[5] Exit" << std::endl;
+		std::cout << "Menu choice: "; std::cin >> menuChoice;
+			
+		if (std::cin.fail())		//checks if user input is correct
 		{
-			clearWindow();
-			correctInput = true;
-			std::cout << "\n[1] Add new values "
-				"\n[2] Display statistics "
-				"\n[3] Search for specific value "
-				"\n[4] Sorting the list "
-				"\n[5] Exit" << std::endl;
-			std::cout << "Menu choice: "; std::cin >> menuChoice;
+			std::cin.clear();
+			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+			std::cout << "- Invalid Input -" << std::endl;
+		}
 
-			if (std::cin.fail())		//checks if user input is correct
-			{
-				std::cin.clear();
-				std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-				std::cout << "- Invalid Input -" << std::endl;
-				correctInput = false;
-			}
-
-		} while (correctInput == false);
 		clearWindow();
 		switch (menuChoice)
 		{
@@ -71,7 +69,7 @@ int main()
 				sensorDataMap[day] = value;		//the value is paired with a specific key, in this case a day
 				sensorData.push_back(value);	//the value is also saved in one vector
 			}
-			std::cout << "\nYou entered the following:\n";
+			std::cout << "\nYou have entered the following:\n";
 			for (auto& pair : sensorDataMap)
 			{
 				std::cout << pair.first << " : " << pair.second << " degrees\n";
@@ -79,7 +77,7 @@ int main()
 			noTimesInAddValue++;
 			system("pause");
 			break;
-		}	//Case 1: add values end
+		}	//Case 1 end
 		case 2: // Display different statistics
 		{
 
@@ -112,53 +110,35 @@ int main()
 				returnToStart = false;
 			}
 			break;
-		}  //case 2: stats end
+		}//case 2 end
 		case 3: //Searchfunction
 		{
 			int searchChoice;
-			int keySearch, valueSearch;
+			//int keySearch, valueSearch;
+
 			do
 			{
-				bool valueWasFound{};		//Used to display error message if value was not found
+				searchAgain = true;
+				//bool valueWasFound{};		//Used to display error message if value was not found
 				std::cout << "\nSearch by key or value?"
 					"\n[1] Key"
-					"\n[2] value" << std::endl;
+					"\n[2] Value" << std::endl;
 				std::cin >> searchChoice;
 				
-				if (searchChoice == 1)
+				switch (searchChoice)
 				{
-					std::cout << "\nWhich day do you want the temperature for?"
-						"\nDay"; std::cin >> keySearch;
-					auto it = sensorDataMap.find("Day " + std::to_string(keySearch)); //saves the keySearch in iterator it
-					if (it != sensorDataMap.end())
-					{
-						std::cout << "\nOn " << it->first << " the temparture was " << it->second << " degrees" << std::endl;
-					}
-					else
-					{
-						std::cout << "\n***Day not found***" << std::endl;
-					}
-				}
-				else
-				{
-					std::cout << "Which value are you looking for? "; std::cin >> valueSearch; std::cout << std::endl;
-					for (auto it = sensorDataMap.begin(); it != sensorDataMap.end(); it++)
-					{
-						if (it->second == valueSearch)
-						{
-							std::cout << "It was " << it->second << " degrees on " << it->first << std::endl;
-							valueWasFound = true;
-						}
-					}
-					if (valueWasFound == false)
-					{
-						std::cout << "\n***Value not found***\n" << std::endl;
-					}
+				case 1:
+					keySearch(sensorDataMap);
+					break;				
+				case 2:
+					valueSearch(sensorDataMap);
+					break;				
 				}
 				std::cout <<
 					"\n[1] New search"
 					"\n[2] Return to start?"
 					"\n[3] Exit "; std::cin >> returnChoice;
+
 				if (returnChoice == 2)
 				{
 					searchAgain = false;
@@ -174,11 +154,11 @@ int main()
 				}
 			} while (searchAgain == true);
 			break;
-		} //case 3: searchfunction end
+		} //case 3 end
 		case 4:		//sorting the list
 		{
 			break;
-		} //case 4: sortint end
+		} //case 4 end
 		case 5:		//Exit
 		{
 			returnToStart = false;

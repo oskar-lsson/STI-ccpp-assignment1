@@ -24,5 +24,8 @@
     <ClCompile Include="sensorStatistic.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="clearWindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
