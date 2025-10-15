@@ -127,6 +127,7 @@
     <ClCompile Include="addValue.cpp" />
     <ClCompile Include="checkInput.cpp" />
     <ClCompile Include="clearWindow.cpp" />
+    <ClCompile Include="differentMenu.cpp" />
     <ClCompile Include="searchFunctions.cpp" />
     <ClCompile Include="sensorDataApp.cpp" />
     <ClCompile Include="sensorStatistic.cpp" />
