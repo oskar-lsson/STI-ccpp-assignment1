@@ -6,8 +6,10 @@
 #include <cmath>		//for the sqrt() function
 #include <map>
 #include <string>
+#include <algorithm>
 
 void clearWindow();					//Clears the window and moves cursor to start position
+void checkInput();					//Checks if the input is correct
 double addValue();								//Allows the user to add a value 
 double sum(const std::vector<double> &vect);		//prints the sum of the values in the vactor
 double minValue(const std::vector<double> &vect);	//Finds the smallest value
@@ -28,7 +30,6 @@ int main()
 	int numberOfDays;
 	int noTimesInAddValue{};
 	
-
 	std::vector<double> sensorData;
 	std::map<std::string, double> sensorDataMap;
 
@@ -41,14 +42,7 @@ int main()
 					 "\n[4] Sorting the list "
 					 "\n[5] Exit" << std::endl;
 		std::cout << "Menu choice: "; std::cin >> menuChoice;
-			
-		if (std::cin.fail())		//checks if user input is correct
-		{
-			std::cin.clear();
-			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-			std::cout << "- Invalid Input -" << std::endl;
-		}
-
+		checkInput();	
 		clearWindow();
 		switch (menuChoice)
 		{
@@ -63,16 +57,24 @@ int main()
 			}
 			for ( i ; i <= numberOfDays; i++)
 			{
-				std::string day = "Day " + std::to_string(i);		//makes the number of i to a string and saved in the string day
+				std::string day;
+				if (i < 10)  //adds a zero before the number to make the list sorted correctly
+				{
+					day = "Day 0" + std::to_string(i);	
+				}
+				else
+				{
+					day = "Day " + std::to_string(i);		
+				}
 				double value = addValue();
 				std::cout << "Temperture for " << day << " is " << value << std::endl;
 				sensorDataMap[day] = value;		//the value is paired with a specific key, in this case a day
 				sensorData.push_back(value);	//the value is also saved in one vector
 			}
 			std::cout << "\nYou have entered the following:\n";
-			for (auto& pair : sensorDataMap)
+			for (auto& val : sensorDataMap)
 			{
-				std::cout << pair.first << " : " << pair.second << " degrees\n";
+				std::cout << val.first << " : " << val.second << " degrees\n";
 			}
 			noTimesInAddValue++;
 			system("pause");
@@ -104,7 +106,8 @@ int main()
 
 			std::cout << "\n[1] Return to start?"
 				"\n[2] Exit "; std::cin >> returnChoice;
-
+			checkInput();
+			
 			if (returnChoice == 2)			//Checks if the user wants to go back to start or exit the program
 			{
 				returnToStart = false;
@@ -114,8 +117,6 @@ int main()
 		case 3: //Searchfunction
 		{
 			int searchChoice;
-			//int keySearch, valueSearch;
-
 			do
 			{
 				searchAgain = true;
@@ -124,7 +125,8 @@ int main()
 					"\n[1] Key"
 					"\n[2] Value" << std::endl;
 				std::cin >> searchChoice;
-				
+				checkInput();
+
 				switch (searchChoice)
 				{
 				case 1:
@@ -135,10 +137,10 @@ int main()
 					break;				
 				}
 				std::cout <<
-					"\n[1] New search"
+					"\n[1] New search?"
 					"\n[2] Return to start?"
 					"\n[3] Exit "; std::cin >> returnChoice;
-
+				checkInput();
 				if (returnChoice == 2)
 				{
 					searchAgain = false;
@@ -157,6 +159,14 @@ int main()
 		} //case 3 end
 		case 4:		//sorting the list
 		{
+			std::vector<std::pair<std::string, double>> sortedSensorMap(sensorDataMap.begin(), sensorDataMap.end());	//makes a copy of sensorDataMap
+			std::sort(sortedSensorMap.begin(), sortedSensorMap.end(),
+				[](auto& a, auto& b) {return a.second < b.second;});
+			for (auto& sortedValues : sortedSensorMap)
+			{
+				std::cout << sortedValues.first << " : " << sortedValues.second << " degrees\n";
+			}
+			system("pause");
 			break;
 		} //case 4 end
 		case 5:		//Exit
