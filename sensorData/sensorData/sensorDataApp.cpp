@@ -10,6 +10,7 @@
 
 void clearWindow();			//Clears the window and moves cursor to start position
 void checkInput();			//Checks if the input is correct
+
 double addValue();			//Allows the user to add a value 
 double sum(const std::vector<double> &vect);		//prints the sum of the values in the vactor
 double minValue(const std::vector<double> &vect);		//Finds the smallest value
@@ -20,7 +21,7 @@ void keySearch(const std::map<std::string, double>& searchMap);			//search for s
 void sortMap(std::vector<std::pair<std::string, double>>& vect, bool ascending);		//sorts the map from smallest to biggest value
 
 //Different menus
-int startMenu(); void returnToStart(); bool searchAgain(); int sortChoice();
+int startMenu(); void returnToStart(); bool searchAgain(); int sortMenu(); int searchMenu();
 
 int main()
 {
@@ -104,17 +105,13 @@ int main()
 		}
 		case 3: //Searchfunction
 		{
-			clearWindow();
+			
 			int searchChoice;
 			do
 			{
+				clearWindow();
 				again = true;
-				std::cout << "\nSearch by key or value?"
-					"\n[1] Key"
-					"\n[2] Value" << std::endl;
-				std::cin >> searchChoice;
-				checkInput();
-
+				searchChoice = searchMenu();
 				switch (searchChoice)
 				{
 				case 1:
@@ -123,8 +120,8 @@ int main()
 				case 2:
 					valueSearch(sensorDataMap);
 					break;				
-				}
-				
+				}	
+
 				again = searchAgain();
 
 			} while (again == true);
@@ -137,17 +134,17 @@ int main()
 			std::vector<std::pair<std::string, double
 				>> sortedSensorMap(sensorDataMap.begin(), sensorDataMap.end());	//makes a copy of sensorDataMap and saves it in a vector
 			
-			sortingChoice = sortChoice();		//Menu
+			sortingChoice = sortMenu();		//Menu
 			
 			if (sortingChoice == 1)
 			{
-				sortMap(sortedSensorMap, true);			//sorts the values in sensorDataMap to smallest to biggest
+				sortMap(sortedSensorMap, true);
 			}
 			else
 			{
 				sortMap(sortedSensorMap, false);
 			}
-			for (auto& sortedValues : sortedSensorMap)
+			for (auto& sortedValues : sortedSensorMap)		//prints the sorted map
 			{
 				std::cout << sortedValues.first << " : " << sortedValues.second << " degrees\n";
 			}

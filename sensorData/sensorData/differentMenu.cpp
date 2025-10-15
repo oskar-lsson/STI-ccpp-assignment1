@@ -53,7 +53,7 @@ bool searchAgain()
 	}
 	return again;
 }
-int sortChoice()
+int sortMenu()
 {
 	int sortingChoice;
 	std::cout <<
@@ -63,4 +63,16 @@ int sortChoice()
 	checkInput();
 
 	return sortingChoice;
+}
+
+int searchMenu()
+{
+	int searchChoice;
+	std::cout << "\nSearch by key or value?"
+		"\n[1] Key"
+		"\n[2] Value" << std::endl;
+	std::cin >> searchChoice;
+	checkInput();
+
+	return searchChoice;
 }
