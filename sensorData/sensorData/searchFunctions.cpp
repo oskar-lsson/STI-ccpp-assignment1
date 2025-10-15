@@ -2,10 +2,15 @@
 #include <map>
 #include <string>
 
+/* valueSearch() 
+* Search for a specific value in the chosen map
+* Using a iterator and loops through the entire map
+* Checks if what the iterator pointing at matches with the search value and prints the result
+*/
 void valueSearch(const std::map<std::string, double> &searchMap)
 {
 	int searchVal;
-	bool valueWasFound = false;
+	bool valueWasFound = false;			//Used to determine if a value was found
 	std::cout << "Which value are you looking for? "; std::cin >> searchVal; std::cout << std::endl;
 	for (auto it = searchMap.begin(); it != searchMap.end(); it++)
 	{
@@ -20,7 +25,12 @@ void valueSearch(const std::map<std::string, double> &searchMap)
 		std::cout << "\n***Value not found***\n" << std::endl;
 	}
 }
-
+/* keySearch()
+* Search for a specific key in the chosen map
+* Using .find() to determine which key word to search for
+* Checks so the iterator is not at the end at the map,
+* Prints the result, depending if the key word was found, diffrent message is shown
+*/
 void keySearch(const std::map<std::string, double>& searchMap)
 {
 	int searchKey;

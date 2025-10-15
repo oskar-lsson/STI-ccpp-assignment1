@@ -8,16 +8,16 @@
 #include <string>
 #include <algorithm>
 
-void clearWindow();					//Clears the window and moves cursor to start position
-void checkInput();					//Checks if the input is correct
-double addValue();								//Allows the user to add a value 
+void clearWindow();			//Clears the window and moves cursor to start position
+void checkInput();			//Checks if the input is correct
+double addValue();			//Allows the user to add a value 
 double sum(const std::vector<double> &vect);		//prints the sum of the values in the vactor
-double minValue(const std::vector<double> &vect);	//Finds the smallest value
-double maxValue(const std::vector<double> &vect);	//Finds the biggest value
-double variance(const std::vector<double> &vect);	//Caluculates the variance
-void valueSearch(const std::map<std::string, double>& searchMap);			// search for specific value
-void keySearch(const std::map<std::string, double>& searchMap);				//search for specific value
-
+double minValue(const std::vector<double> &vect);		//Finds the smallest value
+double maxValue(const std::vector<double> &vect);		//Finds the biggest value
+double variance(const std::vector<double> &vect);		//Caluculates the variance
+void valueSearch(const std::map<std::string, double>& searchMap);		// search for specific value
+void keySearch(const std::map<std::string, double>& searchMap);			//search for specific value
+void sortMap(std::vector<std::pair<std::string, double>>& vect, bool ascending);		//sorts the map from smallest to biggest value
 
 int main()
 {
@@ -36,7 +36,9 @@ int main()
 	do	//Continues until the user wants to exit
 	{
 		clearWindow();
-		std::cout << "\n[1] Add new values "
+		std::cout <<    ""
+					 "\n_______MENU_______\n"
+					 "\n[1] Add new values "
 					 "\n[2] Display statistics "
 					 "\n[3] Search for specific value "
 					 "\n[4] Sorting the list "
@@ -120,7 +122,6 @@ int main()
 			do
 			{
 				searchAgain = true;
-				//bool valueWasFound{};		//Used to display error message if value was not found
 				std::cout << "\nSearch by key or value?"
 					"\n[1] Key"
 					"\n[2] Value" << std::endl;
@@ -159,9 +160,22 @@ int main()
 		} //case 3 end
 		case 4:		//sorting the list
 		{
-			std::vector<std::pair<std::string, double>> sortedSensorMap(sensorDataMap.begin(), sensorDataMap.end());	//makes a copy of sensorDataMap
-			std::sort(sortedSensorMap.begin(), sortedSensorMap.end(),
-				[](auto& a, auto& b) {return a.second < b.second;});
+			int sortChoice;
+			std::vector<std::pair<std::string, double
+				>> sortedSensorMap(sensorDataMap.begin(), sensorDataMap.end());	//makes a copy of sensorDataMap and saves it in a vector
+			
+			std::cout <<
+				"\nIn which order do you want to sort the values?"
+				"\n[1] Ascending?"
+				"\n[2] Descending? "; std::cin >> sortChoice;
+			if (sortChoice == 1)
+			{
+				sortMap(sortedSensorMap, true);			//sorts the values in sensorDataMap to smallest to biggest
+			}
+			else
+			{
+				sortMap(sortedSensorMap, false);
+			}
 			for (auto& sortedValues : sortedSensorMap)
 			{
 				std::cout << sortedValues.first << " : " << sortedValues.second << " degrees\n";

@@ -130,6 +130,7 @@
     <ClCompile Include="searchFunctions.cpp" />
     <ClCompile Include="sensorDataApp.cpp" />
     <ClCompile Include="sensorStatistic.cpp" />
+    <ClCompile Include="sortMap.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
