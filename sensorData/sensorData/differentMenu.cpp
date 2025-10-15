@@ -21,9 +21,10 @@ int startMenu()
 void returnToStart()
 {
 	int returnChoice;
-	std::cout << "\n[1] Return to start?"
-		"\n[2] Exit "; std::cin >> returnChoice;
-
+	std::cout << 
+		"\n[1] Return to start?"
+		"\n[2] Exit "; 
+	std::cin >> returnChoice;
 	checkInput();
 
 	if (returnChoice == 2)			//Checks if the user wants to go back to start or exit the program
@@ -40,8 +41,10 @@ bool searchAgain()
 	std::cout <<
 		"\n[1] New search?"
 		"\n[2] Return to start?"
-		"\n[3] Exit "; std::cin >> returnChoice;
+		"\n[3] Exit "; 
+	std::cin >> returnChoice;
 	checkInput();
+
 	if (returnChoice == 2)
 	{
 		again = false;
@@ -59,7 +62,8 @@ int sortMenu()
 	std::cout <<
 		"\nIn which order do you want to sort the values?"
 		"\n[1] Ascending?"
-		"\n[2] Descending? "; std::cin >> sortingChoice;
+		"\n[2] Descending? ";
+	std::cin >> sortingChoice;
 	checkInput();
 
 	return sortingChoice;
@@ -68,7 +72,8 @@ int sortMenu()
 int searchMenu()
 {
 	int searchChoice;
-	std::cout << "\nSearch by key or value?"
+	std::cout << 
+		"\nSearch by key or value?"
 		"\n[1] Key"
 		"\n[2] Value" << std::endl;
 	std::cin >> searchChoice;

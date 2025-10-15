@@ -9,7 +9,6 @@
 #include <algorithm>
 
 void clearWindow();			//Clears the window and moves cursor to start position
-void checkInput();			//Checks if the input is correct
 
 double addValue();			//Allows the user to add a value 
 double sum(const std::vector<double> &vect);		//prints the sum of the values in the vactor
@@ -131,10 +130,12 @@ int main()
 		{
 			clearWindow();
 			int sortingChoice;
-			std::vector<std::pair<std::string, double
-				>> sortedSensorMap(sensorDataMap.begin(), sensorDataMap.end());	//makes a copy of sensorDataMap and saves it in a vector
 			
-			sortingChoice = sortMenu();		//Menu
+			//makes a copy of sensorDataMap and saves it in a vector
+			std::vector<std::pair<std::string, double
+				>> sortedSensorMap(sensorDataMap.begin(), sensorDataMap.end());	
+			
+			sortingChoice = sortMenu();
 			
 			if (sortingChoice == 1)
 			{
