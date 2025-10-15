@@ -104,6 +104,7 @@ int main()
 		}
 		case 3: //Searchfunction
 		{
+			clearWindow();
 			int searchChoice;
 			do
 			{
@@ -131,6 +132,7 @@ int main()
 		}
 		case 4:		//sorting the list
 		{
+			clearWindow();
 			int sortingChoice;
 			std::vector<std::pair<std::string, double
 				>> sortedSensorMap(sensorDataMap.begin(), sensorDataMap.end());	//makes a copy of sensorDataMap and saves it in a vector
